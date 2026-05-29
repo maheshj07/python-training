@@ -1,0 +1,7 @@
+no1=int(input("Enter the first numbeno1-int(inputr:"))
+no1=int(input("Enter the first numbeno1-int(inputr:"))
+
+  print(f"the sum of {no1} and {no2} = {no1+no2}")
+  print(f"the difference of {no1} and {no2} = {no1-no2}")
+print(f"the product of {no1} and {no2} = {no1*o2}")
+  print(f"the quotient of {no1} and {no2} = {no1/no2}")
