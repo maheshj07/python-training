@@ -1,0 +1,24 @@
+product = input("Enter Product Name: ")
+stock = int(input("Enter Available Stock: "))
+price = float(input("Enter Product Price: "))
+
+print("\n--- Product Details ---")
+print("Product:", product)
+print("Stock:", stock)
+print("Price: ₹", price)
+
+sold = int(input("\nEnter Quantity Sold: "))
+
+if sold <= stock:
+    stock = stock - sold
+    total_sale = sold * price
+
+    print("\n--- Sales Report ---")
+    print("Quantity Sold:", sold)
+    print("Total Sale Amount: ₹", total_sale)
+    print("Remaining Stock:", stock)
+    
+    if stock < 5:
+        print("ALERT: Low Stock!")
+else:
+    print("Not enough stock available.")
