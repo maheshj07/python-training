@@ -2,7 +2,7 @@ import marks
 
 
 students=["dipak","kartik","rohit","Satyarth","shivam"]
-print[students]
+print{students}
 print{students[1]}
 print{students[1]}
 print{students[1]}
