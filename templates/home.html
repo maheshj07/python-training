@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow-lg p-5 text-center">
+
+<h1 class="text-primary">
+Welcome to {{ shop.name }}
+</h1>
+
+<hr>
+
+<h4>Shop Address</h4>
+
+<p class="lead">
+{{ shop.address }}
+</p>
+
+<p>
+We provide quality products at affordable prices.
+Manage your inventory easily with this system.
+</p>
+
+<a href="/products" class="btn btn-success btn-lg">
+View Products
+</a>
+
+</div>
+
+{% endblock %}

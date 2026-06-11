@@ -1,30 +1,53 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-products = []
+shop = {
+    "name": "Mahesh Super Store",
+    "address": "Bus Stop, Hingoli, Maharashtra",
+    "contact": "9307199102",
+    "email": "jabademahesh2006@gmail.com"
+}
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/add', methods=['POST'])
-def add_product():
-
-    product = {
-        "name": request.form['name'],
-        "price": request.form['price'],
-        "quantity": request.form['quantity'],
-        "expiry": request.form['expiry']
+products = [
+    {
+        "id": 1,
+        "name": "Rice",
+        "price": 60,
+        "stock": 120,
+        "expiry": "15-01-2027",
+        "details": "Premium Basmati Rice"
+    },
+    {
+        "id": 2,
+        "name": "Sugar",
+        "price": 45,
+        "stock": 80,
+        "expiry": "10-12-2026",
+        "details": "Refined White Sugar"
+    },
+    {
+        "id": 3,
+        "name": "Milk",
+        "price": 30,
+        "stock": 50,
+        "expiry": "12-07-2026",
+        "details": "Fresh Dairy Milk"
     }
+]
 
-    products.append(product)
+@app.route("/")
+def home():
+    return render_template("home.html", shop=shop)
 
-    return redirect('/products')
+@app.route("/products")
+def index():
+    return render_template("index.html", shop=shop, products=products)
 
-@app.route('/products')
-def products_page():
-    return render_template('products.html', products=products)
+@app.route("/product/<int:id>")
+def product(id):
+    item = next((p for p in products if p["id"] == id), None)
+    return render_template("product.html", shop=shop, product=item)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
