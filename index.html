@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Inventory List</h2>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Product</th>
+
+<th>Price</th>
+
+<th>Stock</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for p in products %}
+
+<tr>
+
+<td>{{ p.id }}</td>
+
+<td>{{ p.name }}</td>
+
+<td>₹{{ p.price }}</td>
+
+<td>{{ p.stock }}</td>
+
+<td>
+
+<a href="/product/{{ p.id }}"
+class="btn btn-primary btn-sm">
+
+View Details
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
