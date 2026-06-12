@@ -9,7 +9,7 @@ print{students[1]}
 print{students[1]}
 
 for students in students:
-    print{"hello {student}! welcome to the class"}
+    print(f"hello {student}! welcome to the class")
 
     marks _list =[85,90,98,56,95]
 
