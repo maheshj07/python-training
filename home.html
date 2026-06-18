@@ -1,29 +1,47 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
 
-<div class="card shadow-lg p-5 text-center">
+<div class="hero text-center shadow">
 
-<h1 class="text-primary">
-Welcome to {{ shop.name }}
+<h1 class="display-4 fw-bold">
+Shop Inventory Management
 </h1>
 
-<hr>
-
-<h4>Shop Address</h4>
-
 <p class="lead">
-{{ shop.address }}
+Manage Products, Stock and Search Inventory Easily
 </p>
 
-<p>
-We provide quality products at affordable prices.
-Manage your inventory easily with this system.
-</p>
-
-<a href="/products" class="btn btn-success btn-lg">
+<a href="/products" class="btn btn-light btn-lg mt-3">
 View Products
 </a>
+
+</div>
+
+<div class="row mt-5">
+
+<div class="col-md-4">
+<div class="card shadow p-4 text-center">
+<h3>📦 Products</h3>
+<p>Manage all inventory products.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow p-4 text-center">
+<h3>📊 Stock</h3>
+<p>Track available stock instantly.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow p-4 text-center">
+<h3>🔍 Search</h3>
+<p>Search products quickly.</p>
+</div>
+</div>
 
 </div>
 

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Filter{% endblock %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+
+<h2>
+📂 Category Filter
+</h2>
+
+<p>
+Category:
+<strong>{{category}}</strong>
+</p>
+
+<table class="table table-bordered">
+
+<tr>
+<th>Name</th>
+<th>Price</th>
+<th>Stock</th>
+</tr>
+
+{% for p in products %}
+
+<tr>
+<td>{{p.name}}</td>
+<td>₹{{p.price}}</td>
+<td>{{p.stock}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}
