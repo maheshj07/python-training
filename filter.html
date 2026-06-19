@@ -1,39 +1,50 @@
-{% extends 'base.html' %}
-
-{% block title %}Filter{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<div class="card shadow p-4">
+<h3>Filter Products</h3>
 
-<h2>
-📂 Category Filter
-</h2>
+<a href="/filter?category=Laptop" class="btn btn-outline-primary">
+Laptop
+</a>
 
-<p>
-Category:
-<strong>{{category}}</strong>
-</p>
+<a href="/filter?category=Mobile" class="btn btn-outline-success">
+Mobile
+</a>
 
-<table class="table table-bordered">
+<a href="/filter?category=Accessories" class="btn btn-outline-warning">
+Accessories
+</a>
 
-<tr>
-<th>Name</th>
-<th>Price</th>
-<th>Stock</th>
-</tr>
+<a href="/filter?category=TV" class="btn btn-outline-danger">
+TV
+</a>
+
+<hr>
+
+<div class="row">
 
 {% for p in products %}
 
-<tr>
-<td>{{p.name}}</td>
-<td>₹{{p.price}}</td>
-<td>{{p.stock}}</td>
-</tr>
+<div class="col-md-4">
+
+<div class="card shadow mb-3">
+
+<div class="card-body">
+
+<h5>{{p[1]}}</h5>
+
+<p>₹{{p[3]}}</p>
+
+<p>Stock : {{p[4]}}</p>
+
+</div>
+
+</div>
+
+</div>
 
 {% endfor %}
-
-</table>
 
 </div>
 

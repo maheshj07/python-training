@@ -1,46 +1,67 @@
-{% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<div class="hero text-center shadow">
+<div class="p-5 bg-primary text-white rounded shadow">
 
-<h1 class="display-4 fw-bold">
-Shop Inventory Management
-</h1>
+<h1>⚡ Electronics Inventory Dashboard</h1>
 
-<p class="lead">
-Manage Products, Stock and Search Inventory Easily
+<p>
+Manage Products, Sales, Suppliers and Stock.
 </p>
 
-<a href="/products" class="btn btn-light btn-lg mt-3">
-View Products
-</a>
-
 </div>
 
-<div class="row mt-5">
+<br>
+
+<div class="row">
 
 <div class="col-md-4">
-<div class="card shadow p-4 text-center">
-<h3>📦 Products</h3>
-<p>Manage all inventory products.</p>
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h1>{{products|length}}</h1>
+
+<h5>Total Products</h5>
+
 </div>
+
+</div>
+
 </div>
 
 <div class="col-md-4">
-<div class="card shadow p-4 text-center">
-<h3>📊 Stock</h3>
-<p>Track available stock instantly.</p>
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h1>{{low_stock|length}}</h1>
+
+<h5>Low Stock Alerts</h5>
+
 </div>
+
+</div>
+
 </div>
 
 <div class="col-md-4">
-<div class="card shadow p-4 text-center">
-<h3>🔍 Search</h3>
-<p>Search products quickly.</p>
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h1>{{suppliers|length}}</h1>
+
+<h5>Suppliers</h5>
+
 </div>
+
+</div>
+
 </div>
 
 </div>

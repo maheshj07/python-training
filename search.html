@@ -1,18 +1,26 @@
-{% extends 'base.html' %}
-
-{% block title %}Search{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<div class="card shadow p-4">
+<form method="GET">
 
-<h2>
-🔍 Search Results
-</h2>
+<div class="input-group mb-3">
 
-<p>
-Search: <strong>{{query}}</strong>
-</p>
+<input
+type="text"
+name="query"
+class="form-control"
+placeholder="Search Product">
+
+<button class="btn btn-primary">
+Search
+</button>
+
+</div>
+
+</form>
+
+{% if products %}
 
 <table class="table table-striped">
 
@@ -25,15 +33,15 @@ Search: <strong>{{query}}</strong>
 {% for p in products %}
 
 <tr>
-<td>{{p.name}}</td>
-<td>₹{{p.price}}</td>
-<td>{{p.stock}}</td>
+<td>{{p[1]}}</td>
+<td>₹{{p[3]}}</td>
+<td>{{p[4]}}</td>
 </tr>
 
 {% endfor %}
 
 </table>
 
-</div>
+{% endif %}
 
 {% endblock %}
