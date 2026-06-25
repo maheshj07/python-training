@@ -2,46 +2,29 @@
 
 {% block content %}
 
-<form method="GET">
+<h3>Search Products</h3>
 
-<div class="input-group mb-3">
-
-<input
-type="text"
-name="query"
-class="form-control"
-placeholder="Search Product">
-
-<button class="btn btn-primary">
-Search
-</button>
-
-</div>
-
+<form method="POST">
+    <input class="form-control" name="keyword" placeholder="Search product...">
+    <button class="btn btn-primary mt-2">Search</button>
 </form>
 
-{% if products %}
+<hr>
 
-<table class="table table-striped">
+{% if results %}
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>Name</th><th>Category</th><th>Stock</th>
+    </tr>
 
-<tr>
-<th>Name</th>
-<th>Price</th>
-<th>Stock</th>
-</tr>
-
-{% for p in products %}
-
-<tr>
-<td>{{p[1]}}</td>
-<td>₹{{p[3]}}</td>
-<td>{{p[4]}}</td>
-</tr>
-
-{% endfor %}
-
+    {% for r in results %}
+    <tr>
+        <td>{{r.name}}</td>
+        <td>{{r.category}}</td>
+        <td>{{r.stock}}</td>
+    </tr>
+    {% endfor %}
 </table>
-
 {% endif %}
 
 {% endblock %}

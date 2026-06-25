@@ -2,51 +2,43 @@
 
 {% block content %}
 
-<div class="card shadow">
+<h3>Dashboard</h3>
 
-<div class="card-header bg-primary text-white">
-
-Electronics Products
-
+<div class="alert alert-danger">
+    ⚠ Low Stock Items (<= 5)
 </div>
 
-<table class="table table-hover">
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th><th>Name</th><th>Category</th><th>Stock</th>
+    </tr>
 
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Category</th>
-<th>Price</th>
-<th>Stock</th>
-<th>Status</th>
-</tr>
-
-{% for p in products %}
-
-<tr>
-
-<td>{{p[0]}}</td>
-<td>{{p[1]}}</td>
-<td>{{p[2]}}</td>
-<td>₹{{p[3]}}</td>
-<td>{{p[4]}}</td>
-
-<td>
-
-{% if p[4] < 10 %}
-<span class="badge bg-danger">Low Stock</span>
-{% else %}
-<span class="badge bg-success">Available</span>
-{% endif %}
-
-</td>
-
-</tr>
-
-{% endfor %}
-
+    {% for p in low_stock %}
+    <tr class="table-danger">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.category}}</td>
+        <td>{{p.stock}}</td>
+    </tr>
+    {% endfor %}
 </table>
 
-</div>
+<hr>
+
+<h4>All Products</h4>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th><th>Price</th><th>Stock</th>
+    </tr>
+
+    {% for p in products %}
+    <tr>
+        <td>{{p.name}}</td>
+        <td>{{p.price}}</td>
+        <td>{{p.stock}}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 {% endblock %}
