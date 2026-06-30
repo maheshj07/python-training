@@ -1,0 +1,15 @@
+{% extends 'base.html' %}{% block content %}
+<h2 class="mb-3">Place Order</h2>
+<form method="post" class="card card-body shadow-sm">
+  <div class="row g-3">
+    <div class="col-md-7">
+      <label class="form-label">Product</label>
+      <select name="product_id" class="form-select" required>
+        {% for p in products %}<option value="{{ p.id }}">{{ p.name }} - ₹{{ '%.2f'|format(p.price) }} (Stock: {{ p.stock }})</option>{% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3"><label class="form-label">Quantity</label><input name="qty" type="number" min="1" value="1" class="form-control" required></div>
+    <div class="col-md-2 d-grid align-items-end"><button class="btn btn-success mt-4">Place Order</button></div>
+  </div>
+</form>
+{% endblock %}

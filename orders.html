@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% block content %}
+<h2 class="mb-3">My Orders</h2>
+<div class="list-group shadow-sm">
+{% for o in orders %}
+  <div class="list-group-item">
+    <div class="d-flex justify-content-between"><strong>Order #{{ o.id }}</strong><span>{{ o.status }}</span></div>
+    <div>Total: ₹{{ '%.2f'|format(o.total) }}</div>
+    <div class="text-muted">{{ o.created_at.strftime('%d-%m-%Y %H:%M') }}</div>
+    {% for item in o.items %}<div class="small">{{ item.product.name }} x {{ item.qty }} @ ₹{{ '%.2f'|format(item.price) }}</div>{% endfor %}
+  </div>
+{% else %}<div class="list-group-item">No orders yet.</div>{% endfor %}
+</div>
+{% endblock %}

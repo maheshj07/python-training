@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% block content %}
+<div class="p-5 mb-4 bg-white rounded-4 shadow-sm">
+  <div class="container-fluid py-2">
+    <h1 class="display-6 fw-bold">Manage your daily needs inventory</h1>
+    <p class="col-md-8 fs-5 text-muted">Track products, search and filter inventory, place orders, and manage customer/shopkeeper accounts in one clean dashboard.</p>
+    <a class="btn btn-primary btn-lg" href="/products">Browse Products</a>
+  </div>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="card shadow-sm"><div class="card-body"><h5>Total Products</h5><p class="display-6">{{ total_products }}</p></div></div></div>
+  <div class="col-md-4"><div class="card shadow-sm"><div class="card-body"><h5>Total Categories</h5><p class="display-6">{{ total_categories }}</p></div></div></div>
+  <div class="col-md-4"><div class="card shadow-sm"><div class="card-body"><h5>Total Orders</h5><p class="display-6">{{ total_orders }}</p></div></div></div>
+</div>
+<h4 class="mb-3">Featured Products</h4>
+<div class="row g-3">
+{% for p in products %}
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ p.name }}</h5>
+        <p class="text-muted mb-1">{{ p.category.name }}</p>
+        <p class="mb-1">₹{{ '%.2f'|format(p.price) }} / {{ p.unit }}</p>
+        <p class="mb-0">Stock: {{ p.stock }}</p>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
