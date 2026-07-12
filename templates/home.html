@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="p-5 mb-4 bg-primary text-white rounded-4 shadow-lg">
+    <div class="container-fluid py-4">
+
+        <h1 class="display-4 fw-bold">
+            ⚡ Electronic Inventory System
+        </h1>
+
+        <p class="lead">
+            Manage electronic products, customers, stock, orders and sales efficiently.
+        </p>
+
+        <a href="{{ url_for('products') }}" class="btn btn-warning btn-lg">
+            🛍️ View Products
+        </a>
+
+        <a href="{{ url_for('register') }}" class="btn btn-light btn-lg ms-2">
+            📄 Register
+        </a>
+
+    </div>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 text-center">
+            <div class="card-body">
+                <h1>📱</h1>
+                <h5>Mobiles</h5>
+                <p>Latest smartphones available.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 text-center">
+            <div class="card-body">
+                <h1>💻</h1>
+                <h5>Laptops</h5>
+                <p>Branded laptops in stock.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 text-center">
+            <div class="card-body">
+                <h1>🎧</h1>
+                <h5>Accessories</h5>
+                <p>Headphones, Mouse, Keyboard.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow border-0 text-center">
+            <div class="card-body">
+                <h1>📦</h1>
+                <h5>Orders</h5>
+                <p>Track customer orders easily.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-3">
+    <div class="card shadow border-0 text-center">
+      <div class="card-body">
+        <h1>🤖 AI Assistant</h1>
+        <h5>AI Chatbot</h5>
+        <p>Ask about products & get help</p>
+        <a href="{{ url_for('ai_chat') }}" class="btn btn-info">Ask AI</a>
+        </div>
+       </div>
+     </div>
+
+{% endblock %}

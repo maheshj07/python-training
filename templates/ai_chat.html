@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>🤖 AI Product Assistant</h2>
+<p>Ask me anything about products. Ex: "Best laptop under 50000" or "Compare iPhone vs Samsung"</p>
+
+<form method="POST" class="mb-4">
+  <textarea name="question" placeholder="Type your question here..." class="form-control mb-2" rows="3" required></textarea>
+  <button class="btn btn-info">Ask AI</button>
+</form>
+
+{% if reply %}
+<div class="card p-3 bg-light shadow">
+  <h5>AI Answer:</h5>
+  <p style="white-space: pre-wrap;">{{ reply }}</p>
+</div>
+{% endif %}
+
+<div class="mt-4">
+  <h6>Sample Questions:</h6>
+  <ul>
+    <li>Which mobile is best under 1 lakh?</li>
+    <li>Show me all TV products</li>
+    <li>Do you have Sony headphones in stock?</li>
+  </ul>
+</div>
+{% endblock %}
