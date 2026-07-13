@@ -16,12 +16,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-midlight Blue bg-Alice Blue">
 
 <div class="container">
 
 <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">
-📱 Electronic Inventory
+<h1 class="hero-title"> Electronic Inventory</h1>
 </a>
 
 <button class="navbar-toggler"
@@ -32,13 +32,13 @@ data-bs-target="#menu">
 
 </button>
 
-<div class="collapse navbar-collapse" id="menu">
+<div class="hero-section shadow-lg rounded-4 p-5">
 
 <ul class="navbar-nav ms-auto">
 
 <li class="nav-item">
 <a class="nav-link" href="{{ url_for('home') }}">
-<i class="fa fa-home"></i> Home
+🏠 Home
 </a>
 </li>
 
@@ -46,13 +46,13 @@ data-bs-target="#menu">
 
 <li class="nav-item">
 <a class="nav-link" href="{{ url_for('products') }}">
-<i class="fa fa-box"></i> Products
+🛍️ Products
 </a>
 </li>
 
 <li class="nav-item">
 <a class="nav-link" href="{{ url_for('orders') }}">
-<i class="fa fa-shopping-cart"></i> Orders
+🛒 My Orders
 </a>
 </li>
 <li class="nav-item">

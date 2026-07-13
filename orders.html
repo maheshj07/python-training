@@ -2,64 +2,78 @@
 
 {% block content %}
 
-<h2>
+<!-- Header Card -->
+<div class="card shadow-lg rounded-4 mb-4">
+    <div class="card-body text-center">
+        <h1 class="fw-bold text-primary">
+            Electronic Inventory
+        </h1>
+        <p class="text-muted">
+            Manage and track your orders
+        </p>
+    </div>
+</div>
 
-<i class="fa fa-shopping-cart"></i>
+<!-- My Orders Card -->
+<div class="card shadow-sm rounded-4 mb-4">
+    <div class="card-body">
+        <h3 class="fw-bold text-dark">
+            <i class="fa fa-shopping-cart"></i>
+            My Orders
+        </h3>
+    </div>
+</div>
 
-My Orders
+<div class="card shadow-lg rounded-4">
+    <div class="card-body">
 
-</h2>
+        <div class="table-responsive">
 
-<table class="table table-bordered table-hover">
+            <table class="table table-hover align-middle">
 
-<thead class="table-dark">
+                <thead class="table-primary">
 
-<tr>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
 
-<th>ID</th>
+                </thead>
 
-<th>Product</th>
+                <tbody>
 
-<th>Quantity</th>
+                {% for order in orders %}
 
-<th>Price</th>
+                <tr>
 
-<th>Status</th>
+                    <td>#{{ order.id }}</td>
 
-</tr>
+                    <td>{{ order.product.name }}</td>
 
-</thead>
+                    <td>{{ order.quantity }}</td>
 
-<tbody>
+                    <td>₹{{ order.product.price }}</td>
 
-{% for order in orders %}
+                    <td>
+                        <span class="badge bg-success px-3 py-2">
+                            {{ order.status }}
+                        </span>
+                    </td>
 
-<tr>
+                </tr>
 
-<td>{{ order.id }}</td>
+                {% endfor %}
 
-<td>{{ order.product.name }}</td>
+                </tbody>
 
-<td>{{ order.quantity }}</td>
+            </table>
 
-<td>₹{{ order.product.price }}</td>
+        </div>
 
-<td>
-
-<span class="badge bg-success">
-
-{{ order.status }}
-
-</span>
-
-</td>
-
-</tr>
-
-{% endfor %}
-
-</tbody>
-
-</table>
+    </div>
+</div>
 
 {% endblock %}

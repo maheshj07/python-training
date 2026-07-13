@@ -3,67 +3,55 @@
 {% block content %}
 
 <div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="hero-section shadow-lg rounded-4 p-5 ">
+            <div class="hero-section shadow-lg rounded-4 p-5 bg-Alice Blue text-dark text-center">
+                <h3>
+                    <i class="fa fa-user-circle"></i>
+                    Customer Login
+                </h3>
+            </div>
 
-<div class="col-md-5">
+            <div class="card-body">
+                <form method="POST">
 
-<div class="card shadow">
+                    <div class="mb-3">
+                        <label>Mobile Number</label>
+                        <input
+                            type="text"
+                            name="mobile"
+                            class="form-control"
+                            required>
+                    </div>
 
-<div class="card-header bg-primary text-white text-center">
+                    <div class="mb-3">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            required>
+                    </div>
 
-<h3>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fa fa-sign-in-alt"></i>
+                        Login
+                    </button>
 
-<i class="fa fa-user-circle"></i>
+                </form>
 
-Customer Login
+                <!-- Register Option -->
+                <div class="text-center mt-3">
+                    <p class="mb-2">Don't have an account?</p>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-success w-100">
+                        <i class="fa fa-user-plus"></i>
+                        Register
+                    </a>
+                </div>
 
-</h3>
-
-</div>
-
-<div class="card-body">
-
-<form method="POST">
-
-<div class="mb-3">
-
-<label>Mobile Number</label>
-
-<input
-type="text"
-name="mobile"
-class="form-control"
-required>
-
-</div>
-
-<div class="mb-3">
-
-<label>Password</label>
-
-<input
-type="password"
-name="password"
-class="form-control"
-required>
-
-</div>
-
-<button class="btn btn-primary w-100">
-
-<i class="fa fa-sign-in-alt"></i>
-
-Login
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
