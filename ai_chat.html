@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+
+            <h3>
+                🤖 AI Product Assistant
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p class="text-muted">
+                Ask anything about products available in our store.
+            </p>
+
+            <form method="POST" action="{{ url_for('ai_chat') }}">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Ask Your Question
+                    </label>
+
+                    <textarea
+                        name="question"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Example: Which mobile is best under ₹50,000?"
+                        required></textarea>
+
+                </div>
+
+                <button type="submit" class="btn btn-info text-white">
+                    Ask AI
+                </button>
+
+                <a href="{{ url_for('products') }}" class="btn btn-secondary">
+                    Back to Products
+                </a>
+
+            </form>
+
+            {% if reply %}
+
+            <hr>
+
+            <div class="alert alert-success">
+
+                <h5>🤖 AI Answer</h5>
+
+                <p style="white-space: pre-wrap;">
+                    {{ reply }}
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="card mt-4 shadow">
+
+        <div class="card-header">
+
+            <h5>Example Questions</h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <ul>
+
+                <li>Which mobile is best under ₹30,000?</li>
+
+                <li>Show all Samsung products.</li>
+
+                <li>Which TV has the lowest price?</li>
+
+                <li>Compare iPhone 15 and Samsung Galaxy S24.</li>
+
+                <li>Do you have OnePlus mobiles in stock?</li>
+
+                <li>Which product has the highest stock?</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

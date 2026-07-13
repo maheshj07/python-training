@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+
+<i class="fa fa-shopping-cart"></i>
+
+My Orders
+
+</h2>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Product</th>
+
+<th>Quantity</th>
+
+<th>Price</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for order in orders %}
+
+<tr>
+
+<td>{{ order.id }}</td>
+
+<td>{{ order.product.name }}</td>
+
+<td>{{ order.quantity }}</td>
+
+<td>₹{{ order.product.price }}</td>
+
+<td>
+
+<span class="badge bg-success">
+
+{{ order.status }}
+
+</span>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

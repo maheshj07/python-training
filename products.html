@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Products</h2>
+
+<div class="row">
+
+{% for product in products %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow h-100">
+
+<div class="card-body">
+
+<h4>{{ product.name }}</h4>
+
+<p>{{ product.description }}</p>
+
+<p><b>Category :</b> {{ product.category }}</p>
+
+<p><b>Price :</b> ₹{{ product.price }}</p>
+
+<p><b>Stock :</b> {{ product.stock }}</p>
+
+<form method="POST"
+action="{{ url_for('place_order',product_id=product.id) }}">
+
+<input
+type="number"
+name="quantity"
+class="form-control mb-2"
+min="1"
+max="{{ product.stock }}"
+value="1"
+required>
+
+<button class="btn btn-success w-100">
+
+<i class="fa fa-shopping-cart"></i>
+
+Place Order
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
