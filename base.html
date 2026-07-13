@@ -16,96 +16,89 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-midlight Blue bg-Alice Blue">
+<nav class="navbar navbar-expand-lg shadow-sm"></nav>
 
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center position-relative">
 
-<a class="navbar-brand fw-bold" href="{{ url_for('home') }}">
-<h1 class="hero-title"> Electronic Inventory</h1>
+<a class="navbar-brand fw-bold mx-auto text-center" href="{{ url_for('home') }}">
+    <h1 class="hero-title">
+    <i class="fas fa-microchip"></i>
+    Electronic Inventory System
+</h1>
 </a>
 
-<button class="navbar-toggler"
-data-bs-toggle="collapse"
-data-bs-target="#menu">
+    {% if request.endpoint != 'login' %}
 
-<span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-</button>
+    <div class="hero-section ms-auto">
 
-<div class="hero-section shadow-lg rounded-4 p-5">
+        <ul class="navbar-nav ms-auto">
 
-<ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">
+    <i class="fas fa-house"></i> Home
+     </a>
+            </li>
 
-<li class="nav-item">
-<a class="nav-link" href="{{ url_for('home') }}">
-🏠 Home
-</a>
-</li>
+            {% if current_user.is_authenticated %}
 
-{% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('products') }}">
+                    <i class="fas fa-shopping-bag"></i> Products
+                </a>
+            </li>
 
-<li class="nav-item">
-<a class="nav-link" href="{{ url_for('products') }}">
-🛍️ Products
-</a>
-</li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('orders') }}">
+                    <i class="fas fa-shopping-cart"></i> My Orders
+                </a>
+            </li>
 
-<li class="nav-item">
-<a class="nav-link" href="{{ url_for('orders') }}">
-🛒 My Orders
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="{{ url_for('ai_chat') }}">
-    🤖 AI Chat
-</a>
-</li>
-<li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('ai_chat') }}">
+                    <i class="fas fa-robot"></i> AI Chat
+                </a>
+            </li>
 
-<span class="nav-link text-warning">
+            <li class="nav-item">
+                <span class="nav-link text-warning">
+                    <i class="fa fa-user-circle"></i>
+                    {{ current_user.name }}
+                </span>
+            </li>
 
-<i class="fa fa-user-circle"></i>
+            <li class="nav-item">
+                <a class="btn btn-danger ms-2" href="{{ url_for('logout') }}">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
 
-{{ current_user.name }}
+            {% else %}
 
-</span>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('register') }}">
+                    <i class="fa fa-user-plus"></i> Register
+                </a>
+            </li>
 
-</li>
+            <li class="nav-item">
+                <a class="btn btn-success ms-2" href="{{ url_for('login') }}">
+                    <i class="fa fa-sign-in-alt"></i> Login
+                </a>
+            </li>
 
-<li class="nav-item">
+            {% endif %}
 
-<a class="btn btn-danger ms-2"
+        </ul>
 
-href="{{ url_for('logout') }}">
+    </div>
 
-<i class="fa fa-sign-out-alt"></i>
-
-Logout
-
-</a>
-
-</li>
-
-{% else %}
-
-<li class="nav-item">
-<a class="nav-link" href="{{ url_for('register') }}">
-<i class="fa fa-user-plus"></i> Register
-</a>
-</li>
-
-<li class="nav-item">
-<a class="btn btn-success ms-2"
-href="{{ url_for('login') }}">
-<i class="fa fa-sign-in-alt"></i> Login
-</a>
-</li>
-
-{% endif %}
-
-</ul>
-
-</div>
+    {% endif %}
 
 </div>
 
