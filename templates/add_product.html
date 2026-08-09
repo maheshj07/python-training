@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Hero Section -->
+
+    <div class="main-card mb-5">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Add New Product
+
+                </h1>
+
+                <p class="fs-5 mt-3">
+
+                    Add new electronic products to your
+                    inventory system quickly and efficiently.
+
+                </p>
+
+                <h4>
+                    📦 Product Management Center
+                </h4>
+
+            </div>
+
+            <div class="col-lg-4 text-center">
+
+                <i class="fas fa-laptop"
+                   style="font-size:150px;color:white;"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Product Form -->
+
+    <div class="card feature-card border-0">
+
+        <div class="card-header text-white"
+             style="background:linear-gradient(135deg,#10b981,#22c55e);">
+
+            <h4 class="mb-0">
+
+                <i class="fas fa-box-open"></i>
+
+                Product Information
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Product Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control form-control-lg rounded-4"
+                            placeholder="Enter product name"
+                            required>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Category
+
+                        </label>
+
+                        <select
+                            name="category"
+                            class="form-select form-select-lg rounded-4"
+                            required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option>Mobile</option>
+                            <option>Laptop</option>
+                            <option>Smart TV</option>
+                            <option>Headphones</option>
+                            <option>Smart Watch</option>
+                            <option>Accessories</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+                                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Price (₹)
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="price"
+                            class="form-control form-control-lg rounded-4"
+                            placeholder="Enter product price"
+                            required>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+
+                            Available Stock
+
+                        </label>
+
+                        <input
+                            type="number"
+                            name="stock"
+                            class="form-control form-control-lg rounded-4"
+                            placeholder="Enter stock quantity"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        Product Description
+
+                    </label>
+
+                    <textarea
+                        name="description"
+                        rows="5"
+                        class="form-control rounded-4"
+                        placeholder="Enter product description"></textarea>
+
+                </div>
+
+                <!-- Product Preview Card -->
+
+                <div class="card bg-light border-0 mb-4">
+
+                    <div class="card-body text-center">
+
+                        <i class="fas fa-laptop fa-4x text-primary mb-3"></i>
+
+                        <h5>Product Preview</h5>
+
+                        <p class="text-muted">
+
+                            Product image upload can be
+                            added later if needed.
+
+                        </p>
+
+                    </div>
+
+                </div>
+                                <hr>
+
+                <!-- Action Buttons -->
+
+                <div class="text-center mt-4">
+
+                    <a href="{{ url_for('admin_products') }}"
+                       class="btn btn-secondary btn-round me-2">
+
+                        <i class="fas fa-arrow-left"></i>
+
+                        Back
+
+                    </a>
+
+                    <button
+                        type="reset"
+                        class="btn btn-warning btn-round me-2">
+
+                        <i class="fas fa-rotate-left"></i>
+
+                        Reset
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-success btn-round">
+
+                        <i class="fas fa-save"></i>
+
+                        Add Product
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Inventory Features Section -->
+
+    <div class="main-card mt-5">
+
+        <h2 class="text-center fw-bold">
+
+            📦 Smart Inventory Management
+
+        </h2>
+
+        <p class="text-center fs-5">
+
+            Manage products efficiently and keep
+            your inventory organized.
+
+        </p>
+
+        <div class="row text-center mt-4">
+
+            <div class="col-md-4">
+
+                <h1>📱</h1>
+
+                <h5>Electronics</h5>
+
+                <p>Mobile, Laptop & Smart Devices</p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h1>📊</h1>
+
+                <h5>Stock Control</h5>
+
+                <p>Track inventory in real time</p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h1>⚡</h1>
+
+                <h5>Fast Management</h5>
+
+                <p>Add and update products quickly</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

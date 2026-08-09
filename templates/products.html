@@ -1,0 +1,671 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:linear-gradient(135deg,#6f42c1,#8b5cf6,#60a5fa);
+    min-height:100vh;
+}
+
+/* Hero */
+
+.products-hero{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    border-radius:30px;
+    padding:40px;
+    color:white;
+    margin-bottom:30px;
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.hero-btn{
+    border:none;
+    border-radius:50px;
+    padding:10px 20px;
+    color:white;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+    margin:5px;
+}
+
+.btn-products{background:#0d6efd;}
+.btn-orders{background:#f59e0b;}
+.btn-ai{background:#8b5cf6;}
+
+/* Search */
+
+.search-card{
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:35px;
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.search-card .form-control{
+    border:none;
+    border-radius:50px;
+    padding:14px 20px;
+}
+
+.search-card .btn{
+    border-radius:50px;
+}
+
+/* Stats */
+
+.stat-card{
+    border-radius:25px;
+    padding:25px;
+    color:white;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    margin-bottom:25px;
+}
+
+.stat-blue{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.stat-green{
+    background:linear-gradient(135deg,#10b981,#22c55e);
+}
+
+.stat-orange{
+    background:linear-gradient(135deg,#f59e0b,#f97316);
+}
+
+/* Product Card */
+
+.product-card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    overflow:hidden;
+    height:100%;
+    border:1px solid rgba(255,255,255,.15);
+    transition:.35s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+.product-header{
+    padding:35px;
+    text-align:center;
+    color:white;
+}
+
+.mobile-bg{
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.laptop-bg{
+    background:linear-gradient(135deg,#10b981,#34d399);
+}
+
+.tv-bg{
+    background:linear-gradient(135deg,#f97316,#fb923c);
+}
+
+.other-bg{
+    background:linear-gradient(135deg,#8b5cf6,#a78bfa);
+}
+
+.product-header i{
+    font-size:75px;
+}
+
+.product-body{
+    padding:25px;
+    text-align:center;
+    color:white;
+}
+
+.price{
+    font-size:30px;
+    font-weight:700;
+}
+
+.stock-good{
+    background:#10b981;
+}
+
+.stock-low{
+    background:#facc15;
+    color:black;
+}
+
+.stock-out{
+    background:#ef4444;
+}
+
+.badge{
+    border-radius:30px;
+    padding:8px 14px;
+}
+
+.order-btn{
+    border-radius:50px;
+    padding:10px 22px;
+    margin-top:15px;
+}
+
+/* Pagination */
+
+.pagination{
+    margin-top:45px;
+    gap:10px;
+}
+
+.page-link{
+    border:none;
+    border-radius:15px;
+    padding:12px 18px;
+    font-weight:700;
+    color:#6f42c1;
+}
+
+.page-item.active .page-link{
+    background:linear-gradient(135deg,#6f42c1,#8b5cf6);
+}
+
+.bottom-banner{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    border-radius:30px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    margin-top:50px;
+}
+
+.section-title{
+    color:white;
+    text-align:center;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+</style>
+
+<div class="container py-4">
+
+<div class="products-hero">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<h1 class="display-5 fw-bold">
+
+<i class="fas fa-box-open"></i>
+
+Product Inventory
+
+</h1>
+
+<p class="lead mt-3">
+
+Manage electronic products, monitor stock and place orders easily.
+
+</p>
+
+<div class="mt-4">
+
+<a href="{{ url_for('products') }}" class="hero-btn btn-products">
+
+📦 Products
+
+</a>
+
+<a href="{{ url_for('orders') }}" class="hero-btn btn-orders">
+
+🛒 Orders
+
+</a>
+
+<a href="{{ url_for('ai_chat') }}" class="hero-btn btn-ai">
+
+🤖 AI Assistant
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
+class="img-fluid"
+width="220">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="stat-card stat-blue">
+
+<h5>Total Products</h5>
+
+<h1>{{ pagination.total }}</h1>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="stat-card stat-green">
+
+<h5>Available</h5>
+
+<h1>
+
+{{ products|selectattr('stock','gt',0)|list|length }}
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="stat-card stat-orange">
+
+<h5>Low Stock</h5>
+
+<h1>
+
+{{ products|selectattr('stock','lt',5)|list|length }}
+
+</h1>
+
+</div>
+
+</div>
+
+</div>
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-card">
+
+    <form action="{{ url_for('products') }}" method="GET">
+
+        <div class="input-group">
+
+            <input
+                type="search"
+                name="q"
+                class="form-control"
+                placeholder="🔍 Search products by name, category..."
+                value="{{ search }}">
+
+            <button class="btn btn-primary px-4">
+
+                <i class="fas fa-search"></i>
+
+                Search
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<h2 class="section-title">
+
+    📱 Available Products
+
+</h2>
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<div class="row g-4">
+
+{% for product in products %}
+
+<div class="col-lg-4 col-md-6">
+
+<div class="product-card">
+
+<div class="product-header
+
+{% if product.category=="Mobile" %}
+mobile-bg
+{% elif product.category=="Laptop" %}
+laptop-bg
+{% elif product.category=="TV" %}
+tv-bg
+{% else %}
+other-bg
+{% endif %}
+
+">
+
+{% if product.category=="Mobile" %}
+
+<i class="fas fa-mobile-screen-button"></i>
+
+{% elif product.category=="Laptop" %}
+
+<i class="fas fa-laptop"></i>
+
+{% elif product.category=="TV" %}
+
+<i class="fas fa-tv"></i>
+
+{% elif product.category=="Headphones" %}
+
+<i class="fas fa-headphones"></i>
+
+{% elif product.category=="Smart Watch" %}
+
+<i class="fas fa-clock"></i>
+
+{% else %}
+
+<i class="fas fa-box-open"></i>
+
+{% endif %}
+
+</div>
+
+<div class="product-body">
+
+<h4 class="fw-bold">
+
+{{ product.name }}
+
+</h4>
+
+<span class="badge bg-primary">
+
+{{ product.category }}
+
+</span>
+
+<div class="price mt-3">
+
+₹{{ "%.0f"|format(product.price) }}
+
+</div>
+
+<p class="mt-3">
+
+{{ product.description }}
+
+</p>
+
+{% if product.stock > 10 %}
+
+<span class="badge stock-good">
+
+<i class="fas fa-check-circle"></i>
+
+In Stock ({{ product.stock }})
+
+</span>
+
+{% elif product.stock > 0 %}
+
+<span class="badge stock-low">
+
+<i class="fas fa-exclamation-circle"></i>
+
+Low Stock ({{ product.stock }})
+
+</span>
+
+{% else %}
+
+<span class="badge stock-out">
+
+<i class="fas fa-times-circle"></i>
+
+Out of Stock
+
+</span>
+
+{% endif %}
+
+<br>
+
+{% if product.stock > 0 %}
+
+<a href="{{ url_for('order',product_id=product.id) }}"
+class="btn btn-light order-btn">
+
+<i class="fas fa-cart-plus"></i>
+
+Order Now
+
+</a>
+
+{% else %}
+
+<button class="btn btn-secondary order-btn" disabled>
+
+Unavailable
+
+</button>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+<!-- =========================
+     NO PRODUCTS FOUND
+========================= -->
+
+{% if products|length == 0 %}
+
+<div class="text-center py-5">
+
+    <div class="product-card p-5">
+
+        <i class="fas fa-box-open fa-5x mb-4 text-warning"></i>
+
+        <h2 class="fw-bold text-white">
+
+            No Products Found
+
+        </h2>
+
+        <p class="text-white mt-3">
+
+            We couldn't find any products matching your search.
+
+        </p>
+
+        <a href="{{ url_for('products') }}"
+           class="btn btn-warning rounded-pill px-4 mt-3">
+
+            <i class="fas fa-arrow-left"></i>
+
+            View All Products
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- =========================
+     PAGINATION
+========================= -->
+
+{% if pagination.pages > 1 %}
+
+<nav class="mt-5">
+
+<ul class="pagination justify-content-center">
+
+{% if pagination.has_prev %}
+
+<li class="page-item">
+
+<a class="page-link"
+href="{{ url_for('products',
+page=pagination.prev_num,
+q=search) }}">
+
+<i class="fas fa-angle-left me-2"></i>
+
+Previous
+
+</a>
+
+</li>
+
+{% endif %}
+
+{% for page_num in pagination.iter_pages(left_edge=1,right_edge=1,left_current=2,right_current=2) %}
+
+{% if page_num %}
+
+{% if page_num == pagination.page %}
+
+<li class="page-item active">
+
+<span class="page-link">
+
+{{ page_num }}
+
+</span>
+
+</li>
+
+{% else %}
+
+<li class="page-item">
+
+<a class="page-link"
+href="{{ url_for('products',
+page=page_num,
+q=search) }}">
+
+{{ page_num }}
+
+</a>
+
+</li>
+
+{% endif %}
+
+{% else %}
+
+<li class="page-item disabled">
+
+<span class="page-link">
+
+...
+
+</span>
+
+</li>
+
+{% endif %}
+
+{% endfor %}
+
+{% if pagination.has_next %}
+
+<li class="page-item">
+
+<a class="page-link"
+href="{{ url_for('products',
+page=pagination.next_num,
+q=search) }}">
+
+Next
+
+<i class="fas fa-angle-right ms-2"></i>
+
+</a>
+
+</li>
+
+{% endif %}
+
+</ul>
+
+</nav>
+
+{% endif %}
+
+<!-- =========================
+     BOTTOM BANNER
+========================= -->
+
+<div class="bottom-banner">
+
+    <h2 class="fw-bold">
+
+        🚀 Electronic Inventory System
+
+    </h2>
+
+    <p class="lead mt-3">
+
+        Discover premium electronic products, manage inventory,
+        track orders and enjoy AI-powered assistance with a modern interface.
+
+    </p>
+
+    <div class="mt-4">
+
+        <a href="{{ url_for('orders') }}"
+           class="btn btn-warning rounded-pill px-4 me-2">
+
+            <i class="fas fa-cart-shopping me-2"></i>
+
+            View Orders
+
+        </a>
+
+        <a href="{{ url_for('ai_chat') }}"
+           class="btn btn-light rounded-pill px-4">
+
+            <i class="fas fa-robot me-2"></i>
+
+            AI Assistant
+
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

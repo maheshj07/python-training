@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#f3f4f8;
+    min-height:100vh;
+}
+
+.dashboard-header{
+    background:linear-gradient(135deg,#6f42c1,#8b5cf6,#60a5fa);
+    border-radius:30px;
+    padding:40px;
+    color:white;
+    margin-bottom:30px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.profile-img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid rgba(255,255,255,.4);
+}
+
+.stat-card{
+    border:none;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+}
+
+.stat-blue{
+    background:linear-gradient(135deg,#4f46e5,#2563eb);
+    color:white;
+}
+
+.stat-green{
+    background:linear-gradient(135deg,#10b981,#22c55e);
+    color:white;
+}
+
+.stat-orange{
+    background:linear-gradient(135deg,#f59e0b,#f97316);
+    color:white;
+}
+
+.stat-red{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:white;
+}
+
+.main-card{
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.big-number{
+    font-size:38px;
+    font-weight:700;
+}
+
+.table{
+    vertical-align:middle;
+}
+
+</style>
+
+<div class="container py-4">
+
+    <div class="dashboard-header">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    📊 Dashboard
+                </h1>
+
+                <p class="fs-5 mb-0">
+                    Welcome Back {{ current_user.name }}
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-center">
+
+                {% if current_user.profile_pic %}
+
+                <img src="{{ url_for('static',
+                filename='uploads/' + current_user.profile_pic) }}"
+                class="profile-img">
+
+                {% else %}
+
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                class="profile-img">
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="stat-card stat-blue">
+                <i class="fas fa-box fa-2x"></i>
+                <p class="mt-3 mb-1">Products</p>
+                <div class="big-number">{{ total_products }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card stat-green">
+                <i class="fas fa-shopping-cart fa-2x"></i>
+                <p class="mt-3 mb-1">Orders</p>
+                <div class="big-number">{{ total_orders }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card stat-orange">
+                <i class="fas fa-users fa-2x"></i>
+                <p class="mt-3 mb-1">Customers</p>
+                <div class="big-number">{{ total_users }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card stat-red">
+                <i class="fas fa-exclamation-triangle fa-2x"></i>
+                <p class="mt-3 mb-1">Low Stock</p>
+                <div class="big-number">{{ low_stock }}</div>
+            </div>
+        </div>
+
+    </div>
+
+            <!-- Middle Section -->
+
+            <div class="row mt-4">
+
+                <div class="col-lg-8">
+
+                    <div class="chart-card">
+
+                        <h4 class="fw-bold">
+                            Customer Habits
+                        </h4>
+
+                        <canvas id="salesChart"
+                                height="100">
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="info-card">
+
+                        <h4 class="fw-bold">
+                            Product Statistics
+                        </h4>
+
+                        <h1 class="mt-4">
+                            {{ total_products }}
+                        </h1>
+
+                        <p class="text-muted">
+                            Total Products Available
+                        </p>
+
+                        <hr>
+
+                        <p>
+                            Electronics
+                        </p>
+
+                        <div class="progress mb-3">
+                            <div class="progress-bar"
+                                 style="width:85%">
+                            </div>
+                        </div>
+
+                        <p>
+                            Accessories
+                        </p>
+
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-success"
+                                 style="width:65%">
+                            </div>
+                        </div>
+
+                        <p>
+                            Gadgets
+                        </p>
+
+                        <div class="progress">
+                            <div class="progress-bar bg-danger"
+                                 style="width:45%">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Recent Orders -->
+
+            <div class="chart-card mt-4">
+
+                <h4 class="fw-bold mb-3">
+                    Recent Orders
+                </h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover">
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for order in recent_orders %}
+                            <tr>
+
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.product_name }}</td>
+                                <td>{{ order.quantity }}</td>
+
+                                <td>
+                                    <span class="badge bg-success">
+                                        {{ order.status }}
+                                    </span>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+new Chart(
+document.getElementById('salesChart'),
+{
+    type:'bar',
+    data:{
+        labels:['Jan','Feb','Mar','Apr','May','Jun','Jul'],
+        datasets:[
+        {
+            label:'Sales',
+            data:[12,19,8,15,10,18,9],
+            borderWidth:0
+        }]
+    }
+});
+</script>
+
+{% endblock %}
